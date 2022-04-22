@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Entities.Abstract
 {
     //IEntity implement eden class veritabanı nesnesidir.
-    internal interface IEntity
+    public interface IEntity
     {
     }
 }
