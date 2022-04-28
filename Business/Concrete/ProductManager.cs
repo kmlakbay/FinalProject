@@ -30,12 +30,17 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ProductAdded);
         }
 
+        public IDataResult<Product> Get(int id)
+        {
+            return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductId == id),Messages.ProductsListed);
+        }
+
         public IDataResult<List<Product>> GetAll()
         {
-            if (DateTime.Now.Hour==22)
-            {
-                return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
-            }
+            //if (DateTime.Now.Hour==15)
+            //{
+            //    return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
+            //}
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(),Messages.ProductsListed);
         }
 
@@ -51,10 +56,6 @@ namespace Business.Concrete
 
         public IDataResult< List<ProductDetailDto>> GetProductDetail()
         {
-            if (DateTime.Now.Hour == 13)
-            {
-                return new ErrorDataResult<List<ProductDetailDto>>(Messages.MaintenanceTime);
-            }
             return new SuccessDataResult<List<ProductDetailDto>>( _productDal.GetProductDetails());
         }
     }
