@@ -12,7 +12,15 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"server=DESKTOP-KPP5P5P\SQLEXPRESS;Database=Northwind;Trusted_Connection=true");
+            if (System.Environment.MachineName== "NT00783")
+            {
+                optionsBuilder.UseSqlServer(@"server=NT00783;Database=Northwind;Trusted_Connection=true");
+            }
+            else
+            {
+                optionsBuilder.UseSqlServer(@"server=DESKTOP-KPP5P5P\SQLEXPRESS;Database=Northwind;Trusted_Connection=true");
+            }
+            
         }
 
         public DbSet<Product> Products { get; set; }
